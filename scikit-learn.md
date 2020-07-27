@@ -7,6 +7,85 @@ categories: [Python]
 
 <!-- more -->
 
+# Day Ox00 
+
+## python 组织
+
+## 包
+包是一个有层次的文件目录结构，它定义了由n个模块或n个子包组成的python应用程序执行环境。通俗一点：包是一个包含__init__.py 文件的目录，该目录下一定得有这个__init__.py文件和其它模块或子包。
+
+__init__.py可以是空文件，在此处reshape包下的这个文件就是空的。当然，也可以有Python代码，因为__init__.py本身就是一个模块。
+
+### Python 模块
+
+Python 模块(Module)，是一个 Python 文件，以 .py 结尾，包含了 Python 对象定义和Python语句。
+
+**注意！** 导入一个模块，使用import！
+
+```python
+import A # A模块名
+from A import B # A为模块名，B为模块A中的某个类、方法或者变量等
+from A imprt * # 导入模块A的所以内容
+```
+
+
+
+## 库
+库是指具有相关功能模块的集合。这也是Python的一大特色之一，即具有强大的标准库、第三方库以及自定义模块。
+
+标准库：python里那些自带的模块
+
+第三方库：就是由其他的第三方机构，发布的具有特定功能的模块。比如2020年十大最受欢迎库：TensorFlow、Scikit-Learn、Numpy、Keras、PyTorch、LightGBM、Eli5、SciPy、Theano、Pandas
+
+python标准库和第三方库的区别
+
+python的标准库是随着pyhon安装的时候默认自带的库。
+
+python的第三方库，需要下载后安装到python的安装目录下，不同的第三方库安装及使用方法不同。
+
+它们调用方式是一样的，都需要用import语句调用。
+
+## sklearn的组织
+
+sklearn是基于numpy和scipy的一个机器学习算法库
+
+# sklearn的通用模式
+
+数据加载；划分数据集；建立模型；训练模型；模型评估
+
+```python
+#导入模块
+from sklearn.model_selection import train_test_split
+from sklearn import datasets
+#k近邻函数
+from sklearn.neighbors import KNeighborsClassifier
+iris = datasets.load_iris()
+#导入数据和标签
+iris_X = iris.data
+iris_y = iris.target
+#划分为训练集和测试集数据
+X_train, X_test, y_train, y_test = train_test_split(iris_X, iris_y, test_size=0.3)
+#print(y_train)
+#设置knn分类器
+knn = KNeighborsClassifier()
+#进行训练
+knn.fit(X_train,y_train)
+#使用训练好的knn进行数据预测
+print(knn.predict(X_test))
+print(y_test)
+```
+
+## 常用的自带数据库
+
+```python
+from sklearn import datasets
+iris = datasets.load_iris()
+digits = datasets.load_digits()
+print(digits.data) # feature
+digits.target
+X, y = datasets.load_iris(return_X_y=True)
+```
+
 
 
 # Cross-validation: evaluating estimator performance[¶](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-evaluating-estimator-performance)
